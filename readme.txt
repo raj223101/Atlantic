@@ -1,0 +1,1 @@
+https://www.dukascopy-node.app/instruments/vccy

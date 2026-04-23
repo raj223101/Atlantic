@@ -1,0 +1,18 @@
+{
+  "name": "dukascopy-hybrid-pipeline",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hybrid Node.js + Python tick-data pipeline for Dukascopy backtesting datasets.",
+  "type": "commonjs",
+  "scripts": {
+    "download": "node download.js",
+    "process": "python process.py"
+  },
+  "dependencies": {
+    "dukascopy-node": "1.46.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
+

@@ -1,213 +1,139 @@
-# Atlantic — End-to-End Quant Trading System
+# Dukascopy Hybrid Tick Pipeline
 
-Atlantic is a modular, research-driven trading system designed to operate across multiple markets with a strong focus on **tick-level execution, microstructure awareness, and realistic PnL generation after costs**.
+Hybrid Node.js + Python pipeline for downloading Dukascopy tick data with `dukascopy-node`, cleaning it, and producing continuous candle datasets for backtesting.
 
-The system is built as a collection of independent yet connected components (“wings”), each responsible for a critical stage of the trading lifecycle — from raw data collection to live execution.
+## Included files
 
----
+- `download.js`: downloads daily raw tick CSV files with retries, caching, skip-existing logic, and per-run logs
+- `process.py`: turns raw CSVs into 1s/5s/10s/15s/30s/1min datasets
+- `resampler.py`: chunked tick cleaning and resampling logic
+- `utils.py`: loading, alignment, fast lookup, and execution simulation helpers
+- `config/instruments.json`: shared symbol-to-Dukascopy instrument mapping
 
-## 🧠 System Overview
-
-Atlantic is divided into 5 core modules:
-
-1. **Data Collection**
-2. **Analysis & Signal Generation**
-3. **Backtesting Engine**
-4. **Research & Optimization**
-5. **Execution Engine (Multi-Market)**
-
-Each module is designed to be **independently scalable, testable, and replaceable**.
-
----
-
-## 🏗️ Architecture
+## Storage layout
 
 ```text
-          ┌──────────────┐
-          │ Data Layer   │
-          └──────┬───────┘
-                 ↓
-          ┌──────────────┐
-          │ Analysis     │
-          └──────┬───────┘
-                 ↓
-          ┌──────────────┐
-          │ Backtesting  │
-          └──────┬───────┘
-                 ↓
-          ┌──────────────┐
-          │ Research     │
-          └──────┬───────┘
-                 ↓
-          ┌──────────────┐
-          │ Execution    │
-          └──────────────┘
+data/
+  raw/
+    EURUSD/
+      2026-01-01.csv
+      2026-01-02.csv
+  processed/
+    EURUSD/
+      1s.csv
+      5s.csv
+      10s.csv
+      15s.csv
+      30s.csv
+      1min.csv
+      manifest.json
+logs/
+  downloads/
+  processing/
 ```
 
----
-
-## 📦 Modules (Wings)
-
-### 1. Data Collection (`atlantic-data`)
-
-* Collects tick-level and candle data
-* Supports multiple sources (broker APIs, crypto exchanges, forex feeds)
-* Handles data cleaning, normalization, and storage
-* Designed for high-frequency ingestion (~2–3 ticks/sec and above)
-
----
-
-### 2. Analysis (`atlantic-analysis`)
-
-* Feature engineering and signal generation
-* Multi-timeframe logic (e.g., 10s entry, 5s exit)
-* Focus on **microstructure patterns**, not just indicators
-* Converts raw data into actionable trading signals
-
----
-
-### 3. Backtesting (`atlantic-backtest`)
-
-* Deterministic backtesting engine
-* Tick-aware simulation (not just candle-based)
-* Includes:
-
-  * Slippage modeling
-  * Transaction cost modeling (STT, fees, etc.)
-  * Strategy-level performance tracking
-
----
-
-### 4. Research (`atlantic-research`)
-
-* Parameter optimization
-* Strategy refinement
-* Comparative analysis (before vs after improvements)
-* Experiment tracking for continuous improvement
-
----
-
-### 5. Execution (`atlantic-execution`)
-
-Handles live trading across multiple markets:
-
-* 🇮🇳 India F&O (NIFTY, BANKNIFTY, FINNIFTY)
-* 🇮🇳 India Crypto
-* 🌍 International Crypto
-* 💱 Forex
-
-#### Core Capabilities:
-
-* Ladder-based limit order execution (L1 → L5)
-* Tick-driven decision updates
-* Dynamic price adjustment
-* Slippage minimization
-* Real-time PnL tracking
-
----
-
-## ⚙️ Execution Philosophy (Core Edge)
-
-Unlike typical systems that focus only on entry signals, Atlantic emphasizes:
-
-* **Execution quality > signal quality**
-* Capturing small price inefficiencies (10–50 paise moves)
-* Minimizing slippage through adaptive order placement
-* Reacting to tick-level changes instead of fixed intervals
-
----
-
-## 📊 Performance Metrics
-
-The system evaluates strategies based on:
-
-* Net PnL (after all costs)
-* Win rate
-* Average PnL per trade
-* Slippage impact
-* Trade duration distribution
-* Strategy-wise breakdown
-
----
-
-## 🔧 Tech Stack
-
-* Python
-* Pandas / NumPy
-* Broker APIs (Zerodha, etc.)
-* Exchange APIs (Binance, etc.)
-* Custom event-driven architecture
-
----
-
-## 📁 Repository Structure
-
-```text
-atlantic/
-│
-├── README.md
-├── architecture/
-│   └── system_design.md
-├── config/
-│   └── global.yaml
-├── orchestrator/
-│   └── pipeline.py
-├── shared/
-│   ├── logger.py
-│   ├── utils.py
-│   └── constants.py
-├── integrations/
-│   └── broker_interface.py
-└── requirements.txt
-```
-
----
-
-## 🚀 Getting Started
+## Install
 
 ```bash
-git clone https://github.com/your-username/atlantic.git
-cd atlantic
-pip install -r requirements.txt
+npm install
+python -m pip install -r requirements.txt
 ```
 
----
+If `node` or `npm` are not available on PATH in PowerShell, use the local portable setup instead:
 
-## 🔐 Security & Configuration
+```powershell
+.\setup-node-local.ps1
+.\npm-local.ps1 install
+```
 
-* API keys are **never stored in the repository**
-* Use `.env` files for sensitive credentials
-* Config-driven architecture via YAML files
+Windows CMD/PowerShell-friendly wrappers that avoid PowerShell script policy issues:
 
----
+```cmd
+setup-node-local.cmd
+npm-local.cmd install
+```
 
-## 📌 Roadmap
+## Download raw tick data
 
-* Order book (Level 2) integration
-* Latency optimization for HFT-style execution
-* Smart order routing across exchanges
-* Reinforcement learning for execution strategies
-* Cross-market arbitrage capabilities
+```bash
+node download.js --symbols all --from 2026-01-01 --to 2026-03-31
+```
 
----
+Portable PowerShell equivalent:
 
-## ⚠️ Disclaimer
+```powershell
+.\node-local.ps1 .\download.js --symbols all --from 2026-01-01 --to 2026-03-31
+```
 
-This project is for research and educational purposes only.
-It is not financial advice or a recommendation to trade.
+Portable CMD equivalent:
 
----
+```cmd
+node-local.cmd download.js --symbols all --from 2026-01-01 --to 2026-03-31
+```
 
-## 👤 Author
+```bash
+node download.js --symbols forex,crypto
+node download.js --symbols EURUSD,US30,XAUUSD
+node download.js --symbols all --lookback-days 90
+node download.js --symbols all --from 2026-01-01 --to 2026-03-31 --batch-size 2 --batch-pause 3000 --retries 12
+```
 
-Raj Yadav
-Quant Trading Systems | Execution-Focused Research | Market Microstructure
+## Process into multi-timeframe candles
 
----
+```bash
+python process.py --symbols all --output-format both
+```
 
-## 💡 Philosophy
+```bash
+python process.py --symbols EURUSD,US30 --start 2026-01-01 --end 2026-03-31
+python process.py --symbols all --continuous --chunk-size 500000 --output-format parquet
+```
 
-Most trading systems try to predict price.
+## Output schema
 
-Atlantic focuses on:
-**how you enter, how you exit, and what you actually keep after costs.**
+Processed candles are saved in UTC with `timestamp` as Unix epoch milliseconds and include:
+
+- `open`, `high`, `low`, `close`
+- `bid_open`, `bid_high`, `bid_low`, `bid_close`
+- `ask_open`, `ask_high`, `ask_low`, `ask_close`
+- `spread_open`, `spread_high`, `spread_low`, `spread_close`, `spread_mean`
+- `volume`
+- `bid_volume`, `ask_volume`
+- `tick_count`
+- `synthetic_seconds`
+
+`volume` is the average of summed bid/ask volume inside each bar. `synthetic_seconds` marks forward-filled 1-second bars created to keep the 1-second timeline continuous.
+
+## Strategy helpers
+
+```python
+from utils import (
+    ExecutionConfig,
+    align_multi_timeframe,
+    load_multi_timeframe,
+    simulate_execution,
+)
+
+frames = load_multi_timeframe("data/processed", "EURUSD", ["1s", "1min"])
+aligned = align_multi_timeframe(frames, base_timeframe="1s")
+
+execution = simulate_execution(
+    frame=frames["1s"],
+    side="buy",
+    signal_timestamp="2026-01-15T09:15:00Z",
+    quantity=10000,
+    config=ExecutionConfig(delay_ms_min=100, delay_ms_max=500),
+)
+
+print(execution.to_dict())
+```
+
+## Notes
+
+- `US30`, `US500`, `USTEC`, `DE40`, `UK100`, and `XTIUSD` are user-facing aliases mapped to Dukascopy instrument ids in `config/instruments.json`.
+- `XTIUSD` is mapped to Dukascopy's `lightcmdusd` feed.
+- `setup-node-local.ps1` downloads the official Node.js v24.15.0 Windows x64 zip and extracts it with `tar.exe`, which preserves the bundled npm layout more reliably than `Expand-Archive` for this package.
+- `node-local.ps1` and `npm-local.ps1` let you run the Node side from this repo without changing your global PATH.
+- `setup-node-local.cmd`, `node-local.cmd`, and `npm-local.cmd` are the easiest entry points on machines where PowerShell script execution is disabled.
+- For very large tick ranges, keep daily raw files, lower `--batch-size`, and raise `--batch-pause` to reduce rate-limit pressure.
+- Parquet output requires `pyarrow`.
