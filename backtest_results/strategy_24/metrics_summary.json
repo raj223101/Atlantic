@@ -1,0 +1,330 @@
+{
+  "strategy_name": "strategy_24",
+  "input_file": "C:\\Users\\Light\\OneDrive\\Desktop\\backtest\\output\\historical_full\\strategy_24.csv",
+  "report_directory": "C:\\Users\\Light\\OneDrive\\Desktop\\backtest\\output\\daily_pnl_analysis\\strategy_24",
+  "assumptions": {
+    "initial_capital": 100000.0,
+    "risk_free_rate_annual": 0.0,
+    "annualization_days": 252,
+    "monte_carlo_iterations": 1000,
+    "monte_carlo_random_seed": 42,
+    "session_windows": {
+      "opening": "09:15-10:30",
+      "mid": "10:30-14:30",
+      "closing": "14:30-15:30"
+    }
+  },
+  "sample": {
+    "start_date": "2021-03-26T00:00:00",
+    "end_date": "2021-06-12T00:00:00",
+    "trading_days": 53,
+    "total_trades": 11987,
+    "indices": [
+      "BANKNIFTY",
+      "NIFTY"
+    ],
+    "source_day_folders": [
+      "1. 26-March-2021",
+      "10. 12-April-2021",
+      "11. 13-April-2021",
+      "12. 15-April-2021",
+      "13. 16-April-2021",
+      "14. 19-April-2021",
+      "15. 20-April-2021",
+      "16. 22-April-2021",
+      "17. 23-April-2021",
+      "18. 26-April-2021",
+      "19. 27-April-2021",
+      "2. 30-March-2021",
+      "20. 28-April-2021",
+      "21. 29-April-2021",
+      "22. 30-April-2021",
+      "23. 03-May-2021",
+      "24. 04-May-2021",
+      "25. 05-May-2021",
+      "26. 06-May-2021",
+      "27. 07-May-2021",
+      "28. 10-May-2021",
+      "29. 11-May-2021",
+      "3. 31-March-2021",
+      "30. 12-May-2021",
+      "31. 14-May-2021",
+      "32. 17-May-2021",
+      "33. 18-May-2021",
+      "34. 19-May-2021",
+      "35. 20-May-2021",
+      "36. 21-May-2021",
+      "37. 24-May-2021",
+      "38. 25-May-2021",
+      "39. 26-May-2021",
+      "4. 01-April-2021",
+      "40. 27-May-2021",
+      "41. 28-May-2021",
+      "42. 31-May-2021",
+      "43. 01-June-2021",
+      "44. 02-June-2021",
+      "45. 03-June-2021",
+      "46. 04-June-2021",
+      "47. 07-June-2021",
+      "48. 08-June-2021",
+      "49. 09-June-2021",
+      "5. 05-April-2021",
+      "50. 10-June-2021",
+      "51. 11-June-2021",
+      "6. 06-April-2021",
+      "7. 07-April-2021",
+      "8. 08-April-2021",
+      "9. 09-April-2021"
+    ]
+  },
+  "profitability": {
+    "total_net_profit": 528229.7,
+    "gross_profit": 1785585.7999999998,
+    "gross_loss": -1257356.1,
+    "average_daily_profit": 9966.5981132075,
+    "median_daily_profit": 9158.35,
+    "best_day": {
+      "date": "2021-04-20T00:00:00",
+      "pnl": 26559.4
+    },
+    "worst_day": {
+      "date": "2021-06-03T00:00:00",
+      "pnl": -6751.2
+    }
+  },
+  "drawdown": {
+    "max_drawdown": -6751.2,
+    "max_drawdown_pct": -0.0112200621,
+    "max_drawdown_pct_abs": 0.0112200621,
+    "average_drawdown": 2112.4166666666,
+    "max_drawdown_duration": 2,
+    "average_drawdown_duration": 1.2857142857,
+    "recovery_time_after_mdd": 1,
+    "max_drawdown_peak_date": "2021-06-02T00:00:00",
+    "max_drawdown_trough_date": "2021-06-03T00:00:00",
+    "recovery_date": "2021-06-04T00:00:00"
+  },
+  "risk_adjusted": {
+    "sharpe_ratio_daily": 12.944076416,
+    "sortino_ratio": 252.6133629338,
+    "calmar_ratio": 555600.326953674,
+    "standard_deviation_returns": 0.0443867034,
+    "downside_deviation": 0.0022744042,
+    "annualized_return": 6233.870167451
+  },
+  "consistency": {
+    "green_days_pct": 86.7924528302,
+    "red_days_pct": 13.2075471698,
+    "flat_days_pct": 0.0,
+    "average_green_day_profit": 11872.352173913,
+    "average_red_day_loss": 2556.9285714286,
+    "consistency_ratio": 4.6432083816
+  },
+  "streak_analysis": {
+    "max_winning_streak": 19,
+    "max_losing_streak": 1,
+    "avg_winning_streak": 6.5714285714,
+    "avg_losing_streak": 1.0
+  },
+  "distribution": {
+    "skewness": 1.6681517204,
+    "kurtosis": 2.6655027694,
+    "histogram": {
+      "bins": [
+        -0.0112200621,
+        0.0049112378,
+        0.0210425377,
+        0.0371738376,
+        0.0533051375,
+        0.0694364374,
+        0.0855677373,
+        0.1016990371,
+        0.117830337,
+        0.1339616369,
+        0.1500929368,
+        0.1662242367,
+        0.1823555366
+      ],
+      "counts": [
+        14,
+        12,
+        8,
+        6,
+        5,
+        1,
+        1,
+        2,
+        2,
+        0,
+        0,
+        2
+      ]
+    }
+  },
+  "trade_level": {
+    "total_trades": 11987,
+    "avg_trades_per_day": 226.1698113208,
+    "win_rate_pct": 40.0266955869,
+    "avg_profit_per_trade": 372.1521050438,
+    "avg_loss_per_trade": 174.9,
+    "expectancy": 44.0668807875
+  },
+  "edge_quality": {
+    "profit_factor": 1.4201114545,
+    "avg_win_avg_loss_ratio": 2.1277993427,
+    "largest_win": 20307.1,
+    "largest_loss": -3450.4,
+    "largest_win_vs_largest_loss_ratio": 5.8854335729,
+    "mae": null,
+    "mfe": null
+  },
+  "time_based": {
+    "session_performance": {
+      "opening": {
+        "trades": 2438,
+        "net_pnl": 136592.55,
+        "gross_pnl": 137567.75,
+        "win_rate_pct": 39.4585726005,
+        "average_trade_pnl": 56.0264766202,
+        "average_trade_duration_minutes": 1.9976483456
+      },
+      "mid": {
+        "trades": 8084,
+        "net_pnl": 327890.6499999999,
+        "gross_pnl": 331124.25,
+        "win_rate_pct": 40.2647204354,
+        "average_trade_pnl": 40.5604465611,
+        "average_trade_duration_minutes": 1.8686564394
+      },
+      "closing": {
+        "trades": 1465,
+        "net_pnl": 63746.5,
+        "gross_pnl": 64332.5,
+        "win_rate_pct": 39.6587030717,
+        "average_trade_pnl": 43.5129692833,
+        "average_trade_duration_minutes": 1.9575540387
+      },
+      "unknown": {
+        "trades": 0,
+        "net_pnl": 0.0,
+        "gross_pnl": 0.0,
+        "win_rate_pct": null,
+        "average_trade_pnl": null,
+        "average_trade_duration_minutes": null
+      }
+    },
+    "day_of_week_performance": {
+      "Monday": {
+        "days": 10,
+        "net_pnl": 61342.25,
+        "average_daily_pnl": 6134.225,
+        "median_daily_pnl": 5259.675,
+        "green_day_rate_pct": 70.0,
+        "average_trades": 236.5
+      },
+      "Tuesday": {
+        "days": 11,
+        "net_pnl": 150563.45,
+        "average_daily_pnl": 13687.5863636364,
+        "median_daily_pnl": 14762.5,
+        "green_day_rate_pct": 100.0,
+        "average_trades": 237.9090909091
+      },
+      "Wednesday": {
+        "days": 9,
+        "net_pnl": 57392.75,
+        "average_daily_pnl": 6376.9722222222,
+        "median_daily_pnl": 4114.0,
+        "green_day_rate_pct": 100.0,
+        "average_trades": 211.1111111111
+      },
+      "Thursday": {
+        "days": 10,
+        "net_pnl": 105433.95,
+        "average_daily_pnl": 10543.395,
+        "median_daily_pnl": 11147.575,
+        "green_day_rate_pct": 80.0,
+        "average_trades": 243.7
+      },
+      "Friday": {
+        "days": 11,
+        "net_pnl": 127030.6,
+        "average_daily_pnl": 11548.2363636364,
+        "median_daily_pnl": 11291.9,
+        "green_day_rate_pct": 90.9090909091,
+        "average_trades": 241.9090909091
+      },
+      "Saturday": {
+        "days": 2,
+        "net_pnl": 26466.7,
+        "average_daily_pnl": 13233.35,
+        "median_daily_pnl": 13233.35,
+        "green_day_rate_pct": 50.0,
+        "average_trades": 3.5
+      }
+    },
+    "monthly_segmentation": {
+      "2021-03": {
+        "days": 3,
+        "net_pnl": 43125.35,
+        "average_daily_pnl": 14375.1166666667,
+        "best_day": 17844.35,
+        "worst_day": 10518.5,
+        "return": 0.4312535
+      },
+      "2021-04": {
+        "days": 19,
+        "net_pnl": 259689.45,
+        "average_daily_pnl": 13667.8657894737,
+        "best_day": 26559.4,
+        "worst_day": -1665.35,
+        "return": 1.8144196678
+      },
+      "2021-05": {
+        "days": 21,
+        "net_pnl": 177676.4,
+        "average_daily_pnl": 8460.780952381,
+        "best_day": 26468.6,
+        "worst_day": -1563.1,
+        "return": 0.4410870703
+      },
+      "2021-06": {
+        "days": 10,
+        "net_pnl": 47738.5,
+        "average_daily_pnl": 4773.85,
+        "best_day": 18331.25,
+        "worst_day": -6751.2,
+        "return": 0.0822381114
+      }
+    }
+  },
+  "extreme_risk": {
+    "worst_3_days_combined_loss": -13633.05,
+    "worst_5_days_combined_loss": -16861.5,
+    "pct_total_profit_from_top_5_days": 24.4878979732
+  },
+  "robustness": {
+    "net_profit_without_top_5_best_days": 398877.35,
+    "net_profit_without_worst_5_days": 545091.2,
+    "monte_carlo_shuffle": {
+      "simulations": 1000,
+      "actual_max_drawdown_pct": -0.0112200621,
+      "shuffle_max_drawdown_pct_mean": -0.0125107216,
+      "shuffle_max_drawdown_pct_median": -0.0112200621,
+      "shuffle_max_drawdown_pct_p05": -0.0183040898,
+      "shuffle_max_drawdown_pct_p95": -0.0112200621,
+      "actual_mdd_percentile_vs_shuffles": 85.2,
+      "shuffle_max_winning_streak_mean": 16.669,
+      "shuffle_max_losing_streak_mean": 1.722
+    }
+  },
+  "volatility": {
+    "daily_return_volatility": 0.0443867034,
+    "average_rolling_volatility_5d": 0.3801226792,
+    "average_rolling_volatility_10d": 0.4592583912,
+    "latest_rolling_volatility_5d": 0.1506689346,
+    "latest_rolling_volatility_10d": 0.2224896521,
+    "pnl_vs_rolling_volatility_correlation_5d": 0.1739400673,
+    "pnl_vs_rolling_volatility_correlation_10d": 0.220060864
+  }
+}
