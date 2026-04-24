@@ -304,13 +304,6 @@ This GitHub repository contains:
 
 ---
 
-# ⚠️ Disclaimer
-
-This project is for research and educational purposes only.
-Not financial advice.
-
----
-
 # 👤 Author
 
 Raj Yadav
